@@ -1,0 +1,12 @@
+spa 
+single page applications {
+    content rendering in the front-end
+    no page reloading
+    interact with data via some json api
+}
+mpa
+multiple page application{
+
+}
+
+pug to html : https://pughtml.com/ 
