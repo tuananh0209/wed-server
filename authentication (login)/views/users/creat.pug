@@ -1,0 +1,13 @@
+extends ../layout/layout.pug
+
+block content
+    h1 Creat user
+    if request
+        each req in request
+            .alert.alert-danger= req 
+    form.form-group(action="/users/creat", method="post" )
+        label(for="name") Name
+        input.form-control#name(type="text", name="name",value=value?value.name:"")
+        label(for="phone") Phone
+        input.form-control#phone(type="text", name="phone", value=value?value.phone:"")
+        button.btn.btn-primary.mt-2 Creat
