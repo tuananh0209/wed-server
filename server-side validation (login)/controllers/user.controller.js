@@ -13,7 +13,8 @@ module.exports.search = function (req, res) {
         return value.name.toLowerCase().indexOf(name.toLowerCase()) != -1;
     })
     res.render('users/users', {
-        users: userMatched
+        users: userMatched,
+        inputs: name
     });
 
 };
@@ -23,10 +24,26 @@ module.exports.creat = function (req, res) {
 };
 
  module.exports.postCreat = function (req, res) {
-     req.body.id = shortid.generate();
-     db.get('users').push(req.body)
+    req.body.id = shortid.generate();
+    var non_input = [];
+    if (!req.body.name){
+        non_input.push("Name is require!");
+    }
+    if (!req.body.phone) {
+        non_input.push("Phone is require!");
+    }
+    console.log(non_input)
+    if (non_input.length) {
+        res.render('users/creat',{
+            request : non_input,
+            value : req.body
+        });
+        return
+ 
+    }
+    db.get('users').push(req.body)
          .write();
-     res.redirect('/users');
+    res.redirect('/users');
 };
 
 module.exports.view = function (req, res) {

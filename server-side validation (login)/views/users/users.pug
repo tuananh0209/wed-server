@@ -1,13 +1,16 @@
 extends ../layout/layout.pug
 
 block content
-    h1 User
-    
-    a.btn.btn-primary.ml-2(href="/users/creat") Creat user
-    
-    form(action="/users/search", method="get", class="form-group d-flex" )
-        input(type='text', name='q', class="form-control")
-        button(class="btn btn-primary ml-2") search
+
+    h1
+        span Users
+        a.btn.btn-primary.ml-2(href="/users/creat") Creat user
+    .d-flex   
+        
+        
+        form.ml-auto(action="/users/search", method="get", class="form-group d-flex" )
+            input(type='text', name='q', class="form-control", value=inputs?inputs:"")
+            button(class="btn btn-primary ml-2") search
     table.table
         th Name
         th Phone
@@ -17,4 +20,4 @@ block content
                 td= user.name
                 td= user.phone
                 td
-                    a(href='/users/' + user.id) View
+                    a.btn.btn-light(href='/users/' + user.id) View
