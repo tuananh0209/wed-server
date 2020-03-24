@@ -1,10 +1,11 @@
 const express = require('express');
 const validate = require('../validate/user.validate')
 const validateAuth = require('../validate/auth.validate')
-
+const multer = require('multer')
 var router = express.Router();
 
 const controller = require('../controllers/user.controller')
+const upload = multer({dest : "./public/image"})
 
 router.get('/',  controller.index)
 
@@ -17,7 +18,7 @@ router.get('/search', controller.search)
 
 router.get('/creat', controller.creat)
 
-router.post('/creat', validate.postCreat , controller.postCreat);
+router.post('/creat', upload.single('avatar') ,validate.postCreat , controller.postCreat);
 
 router.get('/:id', controller.view)
 

@@ -1,4 +1,5 @@
 const db = require('../db')
+const md5 = require('md5')
 
 module.exports.postLogin = function(req , res , next){
     var userName = req.body.name;
@@ -16,7 +17,7 @@ module.exports.postLogin = function(req , res , next){
         return;
     }
 
-    if (user.pass !== pass){
+    if (user.pass !== md5(pass)){
         res.render('auth/login',{
             error: [
                 'Wrong password!'
@@ -25,19 +26,23 @@ module.exports.postLogin = function(req , res , next){
         });
         return;
     }
+
+    //res.locals.user = user;
+
     next();
 }
 
 module.exports.requestAuth = function(req , res , next){
-    if(!req.cookies.userId){
+    if(!req.signedCookies.userId){
         res.redirect('/auth/login');
         return;
     }
-    var user = db.get('users').find({id: req.cookies.userId}).value();
+    var user = db.get('users').find({id: req.signedCookies.userId}).value();
 
     if(!user){
         res.redirect('/auth/login');
         return;
     }
+    res.locals.user = user;
     next();
 }
