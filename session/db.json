@@ -614,5 +614,17 @@
       "image": "https://loremflickr.com/320/240/dog",
       "description": "consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non"
     }
+  ],
+  "session": [
+    {
+      "id": "oGOwIHeE9"
+    },
+    {
+      "id": "Z3zCt1aOF",
+      "cart": {
+        "98ab7841-bc53-4d06-8140-5ba9dded682e": 2,
+        "d2c8ff1b-6ba9-4264-a4a5-0049ae5dfa25": 3
+      }
+    }
   ]
 }
